@@ -50,6 +50,8 @@ public class MainActivity extends AppCompatActivity implements CameraBridgeViewB
         cameraBridgeViewBase = (JavaCameraView)findViewById(R.id.CameraView);
         cameraBridgeViewBase.setVisibility(SurfaceView.VISIBLE);
         cameraBridgeViewBase.setCvCameraViewListener(this);
+        cameraBridgeViewBase.enableFpsMeter();
+        cameraBridgeViewBase.setMaxFrameSize(640, 480);
 
 
 
@@ -134,9 +136,8 @@ public class MainActivity extends AppCompatActivity implements CameraBridgeViewB
             double contourArea = Imgproc.contourArea(contours.get(contourIdx));
 
 
-            if (contourArea < 3000){}
+            if (contourArea < 100){}
             else {
-                Log.i("area798", "a:"+contourArea);
                 Imgproc.rectangle(frame, new Point(rect.x, rect.y), new Point(rect.x + rect.width, rect.y + rect.height), new Scalar(0, 255, 0), 3);
             }
         }
